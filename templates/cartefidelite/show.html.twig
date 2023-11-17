@@ -1,0 +1,56 @@
+{% extends 'da.html.twig' %}   
+{%block content%}
+    <h1>Cartefidelite</h1>
+
+    <table class="table">
+        <tbody> 
+            <tr><th>Idcarte</th>
+                <td>{{ cartefidelite.idcarte }}</td>
+            </tr>
+            <tr>
+                <th>Ptsfidelite</th>
+                <td>{{ cartefidelite.ptsfidelite }}</td>
+            </tr>
+            <tr>
+                <th>Datedebut</th>
+                <td>{{ cartefidelite.datedebut ? cartefidelite.datedebut|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Datefin</th>
+                    <td>{{ cartefidelite.datefin ? cartefidelite.datefin|date('Y-m-d') : '' }}</td>
+                </tr>
+                            <tr>
+                <th>Etatcarte</th>
+                <td>{{ cartefidelite.etatcarte }}</td>
+            </tr>
+            <tr>
+                <th>Niveaucarte</th>
+                <td>{{ cartefidelite.niveaucarte }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cartefidelite_index') }}" style="margin-right: 10px;">
+        <i class="fas fa-arrow-left"></i> Back to list
+    </a>
+    
+    <a href="{{ path('app_cartefidelite_edit', {'idcarte': cartefidelite.idcarte}) }}">
+        <i class="fas fa-edit"></i> Edit
+    </a>
+    
+    
+    {{ include('cartefidelite/_delete_form.html.twig') }}
+{% endblock %} 
+
+
+{% block js %}
+<script src="{{ asset('vendor/purecounter/purecounter_vanilla.js') }}"></script>
+<script src="{{ asset('vendor/aos/aos.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('vendor/glightbox/js/glightbox.min.js') }}"></script>
+<script src="{{ asset('vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+<script src="{{ asset('vendor/swiper/swiper-bundle.min.js') }}"></script>
+<script src="{{ asset('vendor/waypoints/noframework.waypoints.js') }}"></script>
+<script src="{{ asset('vendor/php-email-form/validate.js') }}"></script> 
+{%endblock%}
+

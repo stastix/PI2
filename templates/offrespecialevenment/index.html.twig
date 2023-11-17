@@ -1,0 +1,56 @@
+{% block title %}Offrespecialevenment index{% endblock %}
+
+{% extends 'da.html.twig' %}   
+
+{% block content %} 
+<h1 class="text-center mb-4">Offrespecialevenment </h1>
+
+    <div class="container mt-4">
+
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Idoffrespecialevenment</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">DateDepart</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Categorie</th>
+                    <th scope="col">GuideId</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Niveau</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for offrespecialevenment in offrespecialevenments %}
+                    <tr>
+                        <td>{{ offrespecialevenment.idoffrespecialevenment }}</td>
+                        <td>{{ offrespecialevenment.titre }}</td>
+                        <td>{{ offrespecialevenment.description }}</td>
+                        <td>{{ offrespecialevenment.dateDepart ? offrespecialevenment.dateDepart|date('Y-m-d') : '' }}</td>
+                        <td>{{ offrespecialevenment.prix }}</td>
+                        <td>{{ offrespecialevenment.categorie }}</td>
+                        <td>{{ offrespecialevenment.guideId }}</td>
+                        <td>{{ offrespecialevenment.destination }}</td>
+                        <td>{{ offrespecialevenment.image }}</td>
+                        <td>{{ offrespecialevenment.niveau }}</td>
+                        <td>
+                            <a class="btn btn-info btn-sm" href="{{ path('app_offrespecialevenment_show', {'idoffrespecialevenment': offrespecialevenment.idoffrespecialevenment}) }}">Show</a>
+                            <a class="btn btn-primary btn-sm" href="{{ path('app_offrespecialevenment_edit', {'idoffrespecialevenment': offrespecialevenment.idoffrespecialevenment}) }}">Edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="11" class="text-center">No records found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-center mt-3">
+            <a class="btn btn-success btn-lg" href="{{ path('app_offrespecialevenment_new') }}">Create New</a>
+        </div>
+    </div>
+{% endblock %}

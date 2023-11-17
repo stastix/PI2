@@ -1,0 +1,67 @@
+{% extends 'da.html.twig' %}
+{% block title %}Offrespecialevenment{% endblock %}
+ 
+{% block content %} 
+<h1 class="text-center mb-4">Offrespecialevenment</h1>
+
+    <div class="container mt-4">
+
+        <div class="card mx-auto" style="max-width: 600px;">
+            <div class="card-body">
+                <table class="table table-bordered mx-auto">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Idoffrespecialevenment</th>
+                            <td>{{ offrespecialevenment.idoffrespecialevenment }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Titre</th>
+                            <td>{{ offrespecialevenment.titre }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td>{{ offrespecialevenment.description }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">DateDepart</th>
+                            <td>{{ offrespecialevenment.dateDepart ? offrespecialevenment.dateDepart|date('Y-m-d') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Prix</th>
+                            <td>{{ offrespecialevenment.prix }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Catégorie</th>
+                            <td>{{ offrespecialevenment.categorie }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">GuideId</th>
+                            <td>{{ offrespecialevenment.guideId }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Destination</th>
+                            <td>{{ offrespecialevenment.destination }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Image</th>
+                            <td>{{ offrespecialevenment.image }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Niveau</th>
+                            <td>{{ offrespecialevenment.niveau }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="text-center mt-4">
+                    <a class="btn btn-secondary" href="{{ path('app_offrespecialevenment_index') }}">Back to List</a>
+                    <a class="btn btn-primary" href="{{ path('app_offrespecialevenment_edit', {'idoffrespecialevenment': offrespecialevenment.idoffrespecialevenment}) }}">Edit</a>
+                </div>
+
+                <div class="text-center mt-4">
+                    {{ include('offrespecialevenment/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

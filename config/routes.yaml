@@ -1,3 +1,4 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+cartefidelite_index:
+    path: /cartefidelite/index
+    controller: 'App\Controller\CartefideliteController::index'
+    methods: ['GET']

@@ -1,0 +1,6 @@
+<form method="post" action="{{ path('app_cartefidelite_delete', {'idcarte': cartefidelite.idcarte}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cartefidelite.idcarte) }}">
+    <button type="submit" class="btn" style="background: none; border: none; padding: 0; cursor: pointer;">
+        <i class="fas fa-trash" title="Delete">Delete</i>
+    </button>
+</form>
