@@ -16,6 +16,7 @@
             color: #333;
             margin: 0;
             padding: 0;
+            text-align:center;
         }
 
         h1, h2 {
@@ -44,49 +45,60 @@
 
 <body>
 
-    <h1 style="text-align: center;">Loyalty Card</h1>
+    <h1>Loyalty Card</h1>
 
     <section>
-        <ul>
-            <li><h2 style="text-align: center;"> Hello {{user.prenom }}</h2></li>   
-            <li><h3 style="text-align: center;"> We hope you doing Fine,</h3></li>  
-
-
-
-        </ul>
+        {% if user is defined %}
+            <ul>
+                <li><h2 text-align:center;>Hello {{ user.prenom }}</h2></li>
+                <li><h3>We hope you're doing fine.</h3></li>
+            </ul>
+        {% endif %}
     </section>
 
-    <div style="text-align: center; margin-top: 50px;">
-        <h1 style="margin-bottom: 20px;">Loyalty Card Information</h1>
+    <div>
+        <h1>Loyalty Card Information</h1>
         <ul>
-            <li><h3>Points Fidélité: {{ cartefidelite.ptsfidelite }}</h3></li>
-            <li><h3>Date Debut: {{ cartefidelite.datedebut|date('Y-m-d') }}</h3></li>
-            <li><h3>Date Fin: {{ cartefidelite.datefin|date('Y-m-d') }}</h3></li>
-            <li><h3>Etat Carte: <span style="color: {{ cartefidelite.etatcarte == 'Active' ? 'green' : 'red' }};">{{ cartefidelite.etatcarte }}</span></h3></li>
-            <li><h4>Niveau Carte: </h4>
-                {% set niveauCarte = cartefidelite.niveaucarte %}
-                {% if niveauCarte == 'bronze' %}
-                <img src="{{ asset('img/bronze (2).png') }}" alt="Bronze">
-                {% elseif niveauCarte == 'silver' %}
-                    <img src="{{ asset('img/silver.png') }}" alt="Silver">
-                {% elseif niveauCarte == 'gold' %}
-                    <img src="{{ asset('img/gold.png') }}" alt="Gold"> 
-                {% endif %}
-        </ul>  
-        {% if cartefidelite.ptsfidelite >= 1000 %} 
-        <h4> you can upgrade now </h4>
+            {% if cartefidelite is defined %}
+                <li><h3>Points Fidélité: {{ cartefidelite.ptsfidelite }}</h3></li>
+                <li><h3>Date Debut: {{ cartefidelite.datedebut|date('Y-m-d') }}</h3></li>
+                <li><h3>Date Fin: {{ cartefidelite.datefin|date('Y-m-d') }}</h3></li>
+                <li><h3>Etat Carte: <span style="color: {{ cartefidelite.etatcarte == 'Active' ? 'green' : 'red' }};">{{ cartefidelite.etatcarte }}</span></h3></li>
+                <li><h4>Niveau Carte:</h4>
+                    {% set niveauCarte = cartefidelite.niveaucarte %}
+                    {% if niveauCarte == 'bronze' %}
+                        <img src="{{ asset('img/bronze (2).png') }}" alt="Bronze">
+                    {% elseif niveauCarte == 'silver' %}
+                        <img src="{{ asset('img/silver.png') }}" alt="Silver">
+                    {% elseif niveauCarte == 'gold' %}
+                        <img src="{{ asset('img/gold.png') }}" alt="Gold">
+                    {% endif %}
+                </li>
 
-        <button style="background-color: green; color: white; padding: 10px 20px; font-size: 16px; margin-top: 20px;">Upgrade</button>
-        {% endif %}
+                {% if cartefidelite.NiveauCarte != 'gold' %}
+                    {% if cartefidelite.ptsfidelite >= 1000 %}
+                        <h4>You can upgrade now</h4>
+                        <a href="{{ path('app_cartefidelite_upgrade', {'id': user.id}) }}">
+                            <button>Upgrade</button>
+                        </a>
+                    {% else %}
+                        <h4>You don't have enough points to upgrade</h4>
+                    {% endif %}
+                {% else %}
+                    <h4>Your card is already at the highest level (gold)</h4>
+                {% endif %}
+            {% else %}
+                <li><h3>No loyalty card found.</h3></li>
+                {# Add logic here for creating a new card if needed #}
+            {% endif %}
+        </ul>
     </div>
-            
+
     <!-- You can add more sections or customize the layout based on your requirements -->
 
     <!-- Add your scripts or any additional body elements here -->
 
 </body>
 
-</html> 
-{%endblock%}
-
-
+</html>
+{% endblock %}
